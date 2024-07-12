@@ -8,6 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { db } from "@/db";
+import { Github, SquareArrowOutUpRight } from "lucide-react";
+import Link from "next/link";
 
 const Home = async () => {
   const dishes = await db.dishes.findMany({
@@ -17,17 +19,15 @@ const Home = async () => {
     <div className="flex min-h-screen w-full bg-muted/40">
       <div className="max-w-7xl w-full mx-auto flex flex-col sm:gap-4 sm:py-4">
         <div className="flex flex-col gap-16">
-          <h1 className="text-4xl font-bold tracking-tight">Dishes Data</h1>
+          <h1 className="text-4xl font-bold tracking-tight mt-9 mx-auto">
+            Dishes Data
+          </h1>
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Dish Id</TableHead>
-                <TableHead className="hidden sm:table-cell">
-                  Dish Name
-                </TableHead>
-                <TableHead className="hidden sm:table-cell">
-                  Dish Image Url
-                </TableHead>
+                <TableHead>Dish Name</TableHead>
+                <TableHead>Dish Image Url</TableHead>
                 <TableHead>isPublished?</TableHead>
               </TableRow>
             </TableHeader>
@@ -40,10 +40,12 @@ const Home = async () => {
                   <TableCell>
                     <div className="font-medium">{dish.dishName}</div>
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    {dish.imageUrl}
+                  <TableCell>
+                    <Link href={dish.imageUrl} target="_blank">
+                      {dish.imageUrl}
+                    </Link>
                   </TableCell>
-                  <TableCell className="hidden md:table-cell">
+                  <TableCell>
                     <StatusDropdown
                       id={dish.dishId}
                       currentStatus={dish.isPublished}
@@ -54,6 +56,13 @@ const Home = async () => {
             </TableBody>
           </Table>
         </div>
+        <Link
+          href="https://github.com/hardikarora2311/nosh-task"
+          target="_blank"
+          className="font-light tracking-tight mt-10 mx-auto text-primary"
+        >
+          Github for this project <SquareArrowOutUpRight className="size-4 inline ml-2"/>
+        </Link>
       </div>
     </div>
   );
