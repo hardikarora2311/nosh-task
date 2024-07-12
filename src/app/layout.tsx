@@ -3,13 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import Footer from "@/components/Footer";
+import { constructMetaData } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Nosh Task Submission",
-  description: "Submission for Nosh Task by Hardik Arora",
-};
+export const metadata = constructMetaData();
 
 export default function RootLayout({
   children,
