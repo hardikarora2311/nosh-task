@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import StatusDropdown from "@/components/StatusDropdown";
 import {
   Table,
@@ -12,14 +14,9 @@ import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 
 const Home = async () => {
-  const dishes = await db.dishes
-    .findMany({
-      orderBy: { dishId: "asc" },
-    })
-    .catch((e) => {
-      console.error(e);
-    });
-
+  const dishes = await db.dishes.findMany({
+    orderBy: { dishId: "asc" },
+  });
   return (
     <div className="flex min-h-screen w-full bg-muted/40">
       <div className="max-w-7xl w-full mx-auto flex flex-col sm:gap-4 sm:py-4">
