@@ -28,6 +28,8 @@ const StatusDropdown = ({
     mutationKey: ["change-publish-status"],
     mutationFn: changePublishStatus,
     onSuccess: () => router.refresh(),
+    retry: true,
+    retryDelay: 500,
   });
 
   return (

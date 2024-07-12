@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { db } from "@/db";
-import { Github, SquareArrowOutUpRight } from "lucide-react";
+import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 
 const Home = async () => {
