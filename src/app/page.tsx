@@ -12,9 +12,14 @@ import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 
 const Home = async () => {
-  const dishes = await db.dishes.findMany({
-    orderBy: { dishId: "asc" },
-  });
+  const dishes = await db.dishes
+    .findMany({
+      orderBy: { dishId: "asc" },
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+
   return (
     <div className="flex min-h-screen w-full bg-muted/40">
       <div className="max-w-7xl w-full mx-auto flex flex-col sm:gap-4 sm:py-4">
@@ -32,7 +37,7 @@ const Home = async () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {dishes.map((dish) => (
+              {dishes!.map((dish) => (
                 <TableRow key={dish.dishId} className="bg-accent">
                   <TableCell>
                     <div className="font-medium">{dish.dishId}</div>
@@ -61,7 +66,8 @@ const Home = async () => {
           target="_blank"
           className="font-light tracking-tight mt-10 mx-auto text-primary"
         >
-          Github for this project <SquareArrowOutUpRight className="size-4 inline ml-2"/>
+          Github for this project{" "}
+          <SquareArrowOutUpRight className="size-4 inline ml-2" />
         </Link>
       </div>
     </div>
